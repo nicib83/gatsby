@@ -173,6 +173,7 @@ async function processRemoteNode({
   store,
   cache,
   createNode,
+  requestHeaders,
   auth = {},
   createNodeId,
   ext,
@@ -184,7 +185,7 @@ async function processRemoteNode({
   // See if there's response headers for this url
   // from a previous request.
   const cachedHeaders = await cache.get(cacheId(url))
-  const headers = {}
+  const headers = requestHeaders || {}
 
   // Add htaccess authentication if passed in. This isn't particularly
   // extensible. We should define a proper API that we validate.
